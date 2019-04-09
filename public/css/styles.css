@@ -1,0 +1,72 @@
+/* div 
+{
+    border: 1px black solid;
+} */
+header 
+{
+    padding-bottom: 20px;
+}
+.navbar
+{
+    background-color: #cda88f;
+}
+.navbar-brand img
+{
+    height: 50px;
+}
+.dropdown-item:hover
+{
+    background-color: #cda88f;
+}
+.scheduled-event 
+{
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+}
+.scheduled-event p, .scheduled-event a
+{
+    padding-right: 4px;
+}
+.copyright 
+{
+    padding-bottom: 0;
+}
+
+#topCarousel
+{
+    background-color: #ecd9cd;
+}
+#topCarousel .carousel-inner .carousel-item
+{
+    /* See html document comments for cleaner(?) method proposition to center images */
+    text-align: center;
+}
+#bottomNav
+{
+    justify-content: end; 
+    align-items: center;
+}
+
+#lastNews:after 
+{
+    content: "";
+    background: url(http://hinode-tours.fr/image/design/hinode.jpg) no-repeat;
+    opacity: 0.2;
+    top: 0;
+    left: 15px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
+    width: 100px;
+}
+#facebookFeed
+{
+    padding-bottom: 250px;
+}
+
+
+
+
+

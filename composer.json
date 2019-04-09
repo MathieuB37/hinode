@@ -1,0 +1,20 @@
+{
+    "name": "dwwm/site_hinode",
+    "description": "",
+    "authors": [
+        {
+            "name": "MathieuB37",
+            "email": "mathieu.bertuit@tuta.io"
+        }
+    ],
+    "config":{
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "require": {
+        "twig/twig": "^2.0"
+    }
+
+}
