@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+    <title>Article {{ id }}</title>
+{% endblock %}
+
+{% block mainContent %}
+ <!-- Last News section -->
+    <section id="lastNews" class="col-md-11">
+        <article class="news">
+            <h3 class="news-title">{{ newsTitle }}</h3>
+            <p class="news-content">{{ newsContent }}</p>
+        </article>
+    </section>
+{% endblock %}

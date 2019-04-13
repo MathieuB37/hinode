@@ -21,6 +21,10 @@ class ComposerStaticInit488f3b59eb8c2a1cd32fd8d30db58901
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -36,6 +40,10 @@ class ComposerStaticInit488f3b59eb8c2a1cd32fd8d30db58901
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -49,16 +57,8 @@ class ComposerStaticInit488f3b59eb8c2a1cd32fd8d30db58901
     );
 
     public static $classMap = array (
-        'App\\Router\\Route' => __DIR__ . '/../..' . '/src/router/Route.php',
-        'App\\Router ' => __DIR__ . '/../..' . '/src/Router.php',
-        'Authentication' => __DIR__ . '/../..' . '/src/classes/Authentication.class.php',
-        'Carousel' => __DIR__ . '/../..' . '/src/classes/Carousel.class.php',
-        'DataAccess' => __DIR__ . '/../..' . '/src/model/DataAccess.class.php',
-        'FormGenerator' => __DIR__ . '/../..' . '/src/classes/FormGenerator.class.php',
-        'LoginException' => __DIR__ . '/../..' . '/src/classes/LoginException.class.php',
-        'NavMenu' => __DIR__ . '/../..' . '/src/classes/NavMenu.class.php',
-        'PageWeb' => __DIR__ . '/../..' . '/src/classes/PageWeb.class.php',
-        'RegisterException' => __DIR__ . '/../..' . '/src/classes/RegisterException.class.php',
+        'App\\router\\Route' => __DIR__ . '/../..' . '/src/router/Route.php',
+        'App\\router\\Router' => __DIR__ . '/../..' . '/src/router/Router.php',
         'Symfony\\Polyfill\\Ctype\\Ctype' => __DIR__ . '/..' . '/symfony/polyfill-ctype/Ctype.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Twig\\Cache\\CacheInterface' => __DIR__ . '/..' . '/twig/twig/src/Cache/CacheInterface.php',

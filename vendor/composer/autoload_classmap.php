@@ -6,16 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Router\\Route' => $baseDir . '/src/router/Route.php',
-    'App\\Router ' => $baseDir . '/src/Router.php',
-    'Authentication' => $baseDir . '/src/classes/Authentication.class.php',
-    'Carousel' => $baseDir . '/src/classes/Carousel.class.php',
-    'DataAccess' => $baseDir . '/src/model/DataAccess.class.php',
-    'FormGenerator' => $baseDir . '/src/classes/FormGenerator.class.php',
-    'LoginException' => $baseDir . '/src/classes/LoginException.class.php',
-    'NavMenu' => $baseDir . '/src/classes/NavMenu.class.php',
-    'PageWeb' => $baseDir . '/src/classes/PageWeb.class.php',
-    'RegisterException' => $baseDir . '/src/classes/RegisterException.class.php',
+    'App\\router\\Route' => $baseDir . '/src/router/Route.php',
+    'App\\router\\Router' => $baseDir . '/src/router/Router.php',
     'Symfony\\Polyfill\\Ctype\\Ctype' => $vendorDir . '/symfony/polyfill-ctype/Ctype.php',
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
     'Twig\\Cache\\CacheInterface' => $vendorDir . '/twig/twig/src/Cache/CacheInterface.php',

@@ -1,0 +1,14 @@
+<!-- Generate input field for form -->
+{% macro inputField(label, name, type = "text") %}
+    <div class="form-group col-3">
+        <label for="{{ name }}">{{ label }}</label>
+        <input class="form-control" type={{ type }} name="{{ name }}" placeholder="{{ label }}">
+    </div>
+{% endmacro %}
+
+<!-- generate submit button for form -->
+{% macro submitBtn() %}
+    <div class="form-group col-2">
+        <input class="form-control btnSubmit" type="submit">
+    </div>
+{% endmacro %}
