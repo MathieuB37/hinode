@@ -11,11 +11,11 @@ class ArticleController
     private $newsTitle;
     private $newsContent;
 
-    public function construct()
+    public function __construct()
     {
-        $this->loader = new Twig_Loader_Filesystem(__DIR__ . '/src/view/templates');
-        $this->twig = new Twig_Environment($this->loader, [
-            'cache' => false, __DIR__ . '/tmp',
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/src/view/templates');
+        $twig = new Twig_Environment($loader, [
+        'cache' => false, __DIR__ . '/tmp',
         ]);
         $this->newsTitle = 'Exemple titre article';
         $this->newsContent = 'Exemple contenu article okjspfspofkps sodfp os jsjkj';
@@ -25,7 +25,7 @@ class ArticleController
     public function show($id)
     {
         $this->template = $this->twig->load('article.twig');
-        $this->twig->display('template.twig', ['id' => $id, 'newsTitle' => $this->newsTitle, 'newsContent' => $this->newsTitle]);
+        $this->twig->render('template.twig', ['id' => $id, 'newsTitle' => $this->newsTitle, 'newsContent' => $this->newsTitle]);
         echo "Je suis l'article id $id";
 
     }
