@@ -21,22 +21,22 @@ $router->post('/article/:id', function($id){ echo 'Poster pour l\'article' . $id
 $router->run();
 
 
-// // Template Render :
-// $loader = new Twig_Loader_Filesystem(__DIR__ . '/src/view/templates');
-// $twig = new Twig_Environment($loader, [
-//     'cache' => false, __DIR__ . '/tmp',
-// ]);
+// Template Render :
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/src/view/templates');
+$twig = new Twig_Environment($loader, [
+    'cache' => false, __DIR__ . '/tmp',
+]);
 
-// switch ($page) {
-//     case 'home':
-//         echo $twig->render('home.twig');
-//         break;
-//     case 'connection':
-//         echo $twig->render('connection.twig');
-//         break;
-//     default:
-//         echo $twig->render('404.twig');
-//         break;
-// }
+switch ($page) {
+    case 'home':
+        echo $twig->render('home.twig');
+        break;
+    case 'connection':
+        echo $twig->render('connection.twig');
+        break;
+    default:
+        echo $twig->render('404.twig');
+        break;
+}
 
 

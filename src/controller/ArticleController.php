@@ -1,7 +1,10 @@
 <?php
+
 namespace App\controller;
 
-require_once 'vendor/autoload.php';
+// use vendor\twig\twig\src\Loader\FilesystemLoader as Twig_Loader_Filesystem;
+// use vendor\twig\twig\src\Environment as Twig_Environment;
+
 
 class ArticleController
 {
@@ -10,13 +13,15 @@ class ArticleController
     private $template;
     private $newsTitle;
     private $newsContent;
+    private $id;
 
     public function __construct()
     {
         $loader = new Twig_Loader_Filesystem(__DIR__ . '/src/view/templates');
-        $twig = new Twig_Environment($loader, [
+        $this->twig = new Twig_Environment($loader, [
         'cache' => false, __DIR__ . '/tmp',
         ]);
+
         $this->newsTitle = 'Exemple titre article';
         $this->newsContent = 'Exemple contenu article okjspfspofkps sodfp os jsjkj';
     }
@@ -24,10 +29,8 @@ class ArticleController
     // TODO: Link all of this to the DB in order to get the correct article
     public function show($id)
     {
-        $this->template = $this->twig->load('article.twig');
-        $this->twig->render('template.twig', ['id' => $id, 'newsTitle' => $this->newsTitle, 'newsContent' => $this->newsTitle]);
-        echo "Je suis l'article id $id";
-
+        $this->id = $id;
+        $this->twig->render('article/article.html.twig', ['id' => $id, 'newsTitle' => $this->newsTitle, 'newsContent' => $this->newsTitle]);
     }
 }  
   

@@ -6,8 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\controller\\ArticleController' => $baseDir . '/src/controller/ArticleController.php',
     'App\\router\\Route' => $baseDir . '/src/router/Route.php',
     'App\\router\\Router' => $baseDir . '/src/router/Router.php',
+    'App\\router\\RouterException' => $baseDir . '/src/router/RouterException.php',
     'Symfony\\Polyfill\\Ctype\\Ctype' => $vendorDir . '/symfony/polyfill-ctype/Ctype.php',
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
     'Twig\\Cache\\CacheInterface' => $vendorDir . '/twig/twig/src/Cache/CacheInterface.php',
@@ -96,6 +98,7 @@ return array(
     'Twig\\Node\\Expression\\Filter\\DefaultFilter' => $vendorDir . '/twig/twig/src/Node/Expression/Filter/DefaultFilter.php',
     'Twig\\Node\\Expression\\FunctionExpression' => $vendorDir . '/twig/twig/src/Node/Expression/FunctionExpression.php',
     'Twig\\Node\\Expression\\GetAttrExpression' => $vendorDir . '/twig/twig/src/Node/Expression/GetAttrExpression.php',
+    'Twig\\Node\\Expression\\InlinePrint' => $vendorDir . '/twig/twig/src/Node/Expression/InlinePrint.php',
     'Twig\\Node\\Expression\\MethodCallExpression' => $vendorDir . '/twig/twig/src/Node/Expression/MethodCallExpression.php',
     'Twig\\Node\\Expression\\NameExpression' => $vendorDir . '/twig/twig/src/Node/Expression/NameExpression.php',
     'Twig\\Node\\Expression\\NullCoalesceExpression' => $vendorDir . '/twig/twig/src/Node/Expression/NullCoalesceExpression.php',
@@ -159,6 +162,7 @@ return array(
     'Twig\\Test\\NodeTestCase' => $vendorDir . '/twig/twig/src/Test/NodeTestCase.php',
     'Twig\\Token' => $vendorDir . '/twig/twig/src/Token.php',
     'Twig\\TokenParser\\AbstractTokenParser' => $vendorDir . '/twig/twig/src/TokenParser/AbstractTokenParser.php',
+    'Twig\\TokenParser\\ApplyTokenParser' => $vendorDir . '/twig/twig/src/TokenParser/ApplyTokenParser.php',
     'Twig\\TokenParser\\AutoEscapeTokenParser' => $vendorDir . '/twig/twig/src/TokenParser/AutoEscapeTokenParser.php',
     'Twig\\TokenParser\\BlockTokenParser' => $vendorDir . '/twig/twig/src/TokenParser/BlockTokenParser.php',
     'Twig\\TokenParser\\DeprecatedTokenParser' => $vendorDir . '/twig/twig/src/TokenParser/DeprecatedTokenParser.php',

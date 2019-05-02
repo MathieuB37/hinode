@@ -54,7 +54,7 @@ class DataAccess
         }
         catch(PDOException $error)
         {
-            echo "error when preparing the request";
+            echo "Error when preparing the request";
             exit;
         }
         if ($preparedRequest->bindValue(":login", $login, PDO::PARAM_STR) === false){
