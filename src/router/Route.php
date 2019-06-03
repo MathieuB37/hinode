@@ -43,6 +43,7 @@ class Route
     }
     public function getUrl($params) :string
     {
+
         $path = $this->path;
         foreach($params as $k => $v){
             $path = str_replace(":$k", $v, $path);
@@ -52,6 +53,7 @@ class Route
     public function call()
     {
         if(is_string($this->callable)){
+            // Separate the Controller name from the Method name (ex: Article#show -> [Article, show])
             $params = explode('#', $this->callable);
             $controller = "App\\controller\\" . $params[0] . "Controller";
             $controller = new $controller();

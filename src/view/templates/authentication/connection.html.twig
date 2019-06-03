@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% import 'form.twig' as form%}
+
+{% block head %}
+    <title>Connection</title>
+{% endblock %}
+
+{% block mainContent %}
+    {% if loginError is defined %}
+    <div class="error">
+        {% for error in loginError %}
+            <p> {{ error }} </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="container">
+        <h4>Se connecter</h4>
+        <form action="" method="POST">
+            {{ form.inputField("Login", "login", "text") }}
+            {{ form.inputField("Mot de passe", "password", "password") }}
+            {{ form.submitBtn() }}
+        </form>
+    </div> 
+{% endblock %}

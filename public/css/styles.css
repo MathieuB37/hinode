@@ -32,6 +32,15 @@ header
 {
     padding-bottom: 0;
 }
+.news-date
+{
+    font-size: 14px;
+    font-style: italic;
+}
+.news-content
+{
+    font-size: 30px;
+}
 
 #topCarousel
 {

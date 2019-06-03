@@ -11,6 +11,7 @@ class Router
     {
         $this->url = $url;
     }
+    //// METHODS :
     // Detect GET method url :
     public function get(string $path, $callable, $name = null) :Route
     {
@@ -21,6 +22,7 @@ class Router
     {
         return $this->add($path, $callable, $name, 'POST');
     }
+    // Create a new Route :
     private function add($path, $callable, $name, $method) :Route
     {
         $route = new Route ($path, $callable);
@@ -41,11 +43,11 @@ class Router
     // Cheking if the current url matches one of the routes:
     public function run() 
     {
-       // Is the route 
+       // 
         if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){
             throw new RouterException('REQUEST_METHOD does not exist');
         }
-        // Cheking all the routes
+        // Cheking all the routes 
         foreach($this->routes[$_SERVER['REQUEST_METHOD']] as $route){
             // Checks if the entered url exists :
             if($route->match($this->url)){

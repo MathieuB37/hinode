@@ -2,35 +2,32 @@
 
 namespace App\controller;
 
-// use vendor\twig\twig\src\Loader\FilesystemLoader as Twig_Loader_Filesystem;
-// use vendor\twig\twig\src\Environment as Twig_Environment;
+use \App\controller\DefaultController;
 
 
-class ArticleController
+class ArticleController extends DefaultController
 {
-    private $loader;
-    private $twig;
-    private $template;
     private $newsTitle;
     private $newsContent;
     private $id;
 
-    public function __construct()
+    // TODO: Link all of this to the DB in order to get the correct article
+    public function show(int $id)
     {
-        $loader = new Twig_Loader_Filesystem(__DIR__ . '/src/view/templates');
-        $this->twig = new Twig_Environment($loader, [
-        'cache' => false, __DIR__ . '/tmp',
-        ]);
-
-        $this->newsTitle = 'Exemple titre article';
-        $this->newsContent = 'Exemple contenu article okjspfspofkps sodfp os jsjkj';
+        $this->article = $this->dataBase->getArticle($id);
+        // $blah = DefaultController::__construct();
+        echo $this->twig->render('article/article.html.twig', ['article' => $this->article]);
     }
 
-    // TODO: Link all of this to the DB in order to get the correct article
-    public function show($id)
+    public function create()
     {
-        $this->id = $id;
-        $this->twig->render('article/article.html.twig', ['id' => $id, 'newsTitle' => $this->newsTitle, 'newsContent' => $this->newsTitle]);
+        // Detect if a form has been filled
+        if (isset($_POST["articleTitle"]) && isset($_POST["articleContent"]) && isset($_POST["article"])) {
+
+        } else {
+            // Display the article creation form
+            echo $this->twig->render('article/create.html.twig');
+        }
     }
 }  
   

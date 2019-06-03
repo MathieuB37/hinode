@@ -1,14 +1,22 @@
-<!-- Generate input field for form -->
+{# Generate input field for form #}
 {% macro inputField(label, name, type = "text") %}
     <div class="form-group col-3">
         <label for="{{ name }}">{{ label }}</label>
-        <input class="form-control" type={{ type }} name="{{ name }}" placeholder="{{ label }}">
+        <input class="form-control" type="{{ type }}" name="{{ name }}" placeholder="{{ label }}">
     </div>
 {% endmacro %}
 
-<!-- generate submit button for form -->
+{# generate submit button for form  #}
 {% macro submitBtn() %}
     <div class="form-group col-2">
         <input class="form-control btnSubmit" type="submit">
+    </div>
+{% endmacro %}
+
+{# Genreate a textarea #}
+{% macro textArea(label, name, cols = 30, rows = 6) %}
+    <div class="form-group col-2">
+        <label for="{{ name }}">{{ label }}</label>
+        <textarea class="form-control" name="{{ name }}" cols="{{ cols }}" rows="{{ rows }}"></textarea>
     </div>
 {% endmacro %}

@@ -1,6 +1,7 @@
 <?php
+namespace App\model;
 
-require_once 'classes/RegisterException.class.php';
+use App\exception\AuthenticationException;
 
 class DataAccess 
 {   
@@ -8,38 +9,35 @@ class DataAccess
     // Database access
     const DRIVER = "mysql";
     const HOST = "localhost";
+    const PORT = "3306";
     const BASE = "site_hinode";
-    const LOGIN = "Totoro";
-    const PASSWORD = "wozLwszAp7huGAU2";
-    
+    const LOGIN = "hinode";
+    const PASSWORD = "kJMg7uBfg6ZZ2QPx";
     // Table of users
     const USERS_TABLE = "user";
     const LOGIN_FIELD = "login";
     const PASSWORD_FIELD = "password";
-
     // Class attributes
     private static $instance = null;
     // Attributes
     private $dataBase;
-    
+
     // Class methods :
     public static function getInstance() : self
     {   // Avoiding 2 simultaneous connection to the DB
-        if (self::$instance === null){
+        if (self::$instance === null) {
             self::$instance = new DataAccess();
         }
         return self::$instance; 
     }
     
-    
     private function __construct()
     {   // Tries to establish a connection with the database 
         try {
-            $this->dataBase = new PDO(self::DRIVER . ":host= " . self::HOST . ";dbname=" . self::BASE . ";charset=UTF8", 
-                                      self::LOGIN, self::PASSWORD);
-        }
-        catch(PDOException $error) {
-            echo "Connection failed: " . $error->getMessage();
+            $this->dataBase = new \PDO(self::DRIVER . ':host=' . self::HOST . ';port=' . self::PORT . ';dbname=' . self::BASE . ';charset=UTF8', 
+                                    self::LOGIN, self::PASSWORD);
+        } catch(PDOException $error) {
+            echo "Connexion echouée : " . $error->getMessage();
             exit;
         }
     }
@@ -48,33 +46,29 @@ class DataAccess
     public function checkLogin(string $login, string $password) :bool
     {
         $request =  "SELECT password FROM user WHERE login=:login";
-        try
-        {
+        try {
             $preparedRequest = $this->dataBase->prepare($request);
-        }
-        catch(PDOException $error)
+        } catch(PDOException $error)
         {
             echo "Error when preparing the request";
             exit;
         }
-        if ($preparedRequest->bindValue(":login", $login, PDO::PARAM_STR) === false){
+        if (!$preparedRequest->bindValue(":login", $login, \PDO::PARAM_STR)) {
             // Request Failed
             echo "Request failed";
             exit;
         }
-        if ($preparedRequest->execute() === false){
+        if (!$preparedRequest->execute()) {
             // Request Failed
             echo "Request failed";
             exit;
         }
-
         $result = $preparedRequest->fetch();
-        
-        if ($result === false){
-            throw new LoginException(LoginException::INCORRECT_INFORMATIONS);
+        if ($result === false) {
+            return false;
         }
-        if (!password_verify($password, $result["password"])){
-            throw new LoginException(LoginException::INCORRECT_INFORMATIONS);
+        if (!password_verify($password, $result["password"])) {
+            return false;
         }
 //////////
         // Si OK, l'utilisateur devient connecté
@@ -89,17 +83,15 @@ class DataAccess
         return true;
     }
 
-
     public function createUser(string $login, string $password)
     {
         try {
             $request = $this->dataBase->prepare("INSERT INTO user (login, password) VALUES (:login, :password)");
-        }
-        catch (PDOException $erreur) {
+        } catch (PDOException $erreur) {
             echo "Request Failed";
-            exit();
+            exit;
         }
-        if (!$request->bindValue(":login",$login, PDO::PARAM_STR) ||
+        if (!$request->bindValue(":login",$login, \PDO::PARAM_STR) ||
             !$request->bindValue(":password",password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR)) {
             echo "Request Failed";
             exit();
@@ -107,11 +99,10 @@ class DataAccess
         if (!$request->execute()) {
             // Si le login est déjà dans la base
             if ($request->errorInfo()[0] === '23000') {
-                throw new RegisterException(RegisterException::LOGIN_ALREADY_USED);
-            }
-            else {
+                throw new AuthenticationException(AuthenticationException::LOGIN_ALREADY_USED);
+            } else {
                 echo "Request Failed";
-                exit();
+                exit;
             }
         }
         if ($request->closeCursor() === false) {
@@ -119,20 +110,39 @@ class DataAccess
         }
     }
     
+    public function getArticle(int $id) : array
+    {
+        // Trying to prepare the request in order to avoid SQL injection
+        try {
+            $request = $this->dataBase->prepare("SELECT title, date, content FROM article WHERE id = :id");
+        } catch (PDOException $erreur) {
+            echo "Request Failed";
+            exit;
+        }
+        // Binding value 
+        if (!$request->bindValue(":id", $id, \PDO::PARAM_INT)) {
+            echo "Request Failed";
+            exit;
+        }
+        // Executing the request to the server
+        if (!$request->execute()) {
+            // Request Failed
+            echo "Could not get article";
+            exit;
+        }
+        // Fetching the article
+        $response = $request->fetch();
+        // Making sure we close the fetch
+        if ($request->closeCursor() === false) {
+            echo "Could not get article";
+            exit;
+        }
+        $article = ['title' => $response[0], 'date' => $response[1], 'content' => $response[2]];
+        var_dump($article);
+        return($article);
+        // $article =  ["title" => $response]
+    }
 
-
-
-////    // Récupération de tous les articles :
-    // public function getAllArticles()
-    // {
-    //     $result = $this->dataBase->query("SELECT * FROM article");
-    //     $tableau = $result->fetchAll();
-    //     $result->closeCursor();
-    //     return $tableau;
-    //     // $readArticle = $this->dataBase->query("SELECT * FROM article") ;
-    //     // $preparedQuery = $dataBase->prepare($query);
-    //     // $preparedQuery->execute();
-    // }
 
 ////    // Requete récupération article
     // public function getArticle(string $articleTitle):array
@@ -172,5 +182,17 @@ class DataAccess
     //         echo $ligne[2] . "<br>";
     //     }
     //     return $article;
+    // }
+
+    ////    // Récupération de tous les articles :
+    // public function getAllArticles()
+    // {
+    //     $result = $this->dataBase->query("SELECT * FROM article");
+    //     $tableau = $result->fetchAll();
+    //     $result->closeCursor();
+    //     return $tableau;
+    //     // $readArticle = $this->dataBase->query("SELECT * FROM article") ;
+    //     // $preparedQuery = $dataBase->prepare($query);
+    //     // $preparedQuery->execute();
     // }
 } 

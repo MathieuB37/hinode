@@ -1,4 +1,4 @@
-{% extends '../layout.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block head %}
     <title>Article {{ id }}</title>
@@ -8,8 +8,9 @@
  <!-- Last News section -->
     <section id="lastNews" class="col-md-11">
         <article class="news">
-            <h3 class="news-title">{{ newsTitle }}</h3>
-            <p class="news-content">{{ newsContent }}</p>
+            <h3 class="news-title">{{ article['title'] }}</h3>
+            <h4 class="news-date">{{ article['date'] }}</h4>
+            <p class="news-content">{{ article['content'] }}</p>
         </article>
     </section>
 {% endblock %}

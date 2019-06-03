@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% import 'form.twig' as form%}
+
+{% block head %}
+    <title>Create an article</title>
+{% endblock %}
+
+{% block mainContent %}
+    {% if articleCreateError is defined %}
+    <div class="error">
+        {% for error in articleCreateError %}
+            <p> {{ error }} </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="container">
+        <h4>Create a new article : </h4>
+        <form action="" method="POST">
+            {{ form.inputField("Title", "articleTitle", "text") }}
+            {{ form.textArea("Article Content :", "articleContent", 40, 8) }}
+            {{ form.submitBtn() }}
+        </form>
+    </div> 
+{% endblock %}

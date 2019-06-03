@@ -18,6 +18,7 @@
         }
     },
     "require": {
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.11",
+        "gettext/gettext": "^4.6"
     }
 }
