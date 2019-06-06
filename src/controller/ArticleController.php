@@ -7,8 +7,8 @@ use \App\controller\DefaultController;
 
 class ArticleController extends DefaultController
 {
-    private $newsTitle;
-    private $newsContent;
+    // private $newsTitle;
+    // private $newsContent;
     private $id;
 
     // TODO: Link all of this to the DB in order to get the correct article
@@ -22,8 +22,8 @@ class ArticleController extends DefaultController
     public function create()
     {
         // Detect if a form has been filled
-        if (isset($_POST["articleTitle"]) && isset($_POST["articleContent"]) && isset($_POST["article"])) {
-
+        if (isset($_POST["articleTitle"]) && isset($_POST["articleContent"]) && isset($_POST["articleLanguage"])) {
+            $this->article = $this->dataBase->createArticle($_POST["articleTitle"], $_POST["articleContent"], $_POST["articleLanguage"]);
         } else {
             // Display the article creation form
             echo $this->twig->render('article/create.html.twig');

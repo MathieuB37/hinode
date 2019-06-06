@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block mainContent %}
-    {% if loginError is defined %}
+    {% if errorList is defined %}
     <div class="error">
-        {% for error in loginError %}
-            <p> {{ error }} </p>
+        {% for error in errorList %}
+            <p class="error-red"> {{ error }} </p>
         {% endfor %}
     </div>
     {% endif %}

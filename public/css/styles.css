@@ -6,6 +6,18 @@ header
 {
     padding-bottom: 20px;
 }
+.text-area text-area
+{
+    resize: both;
+    width: auto;
+}
+.error-red
+{
+    margin-left: 15px;
+    padding: 5px;
+    background-color: red;
+    color: white;
+}
 .navbar
 {
     background-color: #cda88f;

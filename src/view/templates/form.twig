@@ -14,9 +14,9 @@
 {% endmacro %}
 
 {# Genreate a textarea #}
-{% macro textArea(label, name, cols = 30, rows = 6) %}
+{% macro textArea(label, name, cols = "30", rows = "30") %}
     <div class="form-group col-2">
         <label for="{{ name }}">{{ label }}</label>
-        <textarea class="form-control" name="{{ name }}" cols="{{ cols }}" rows="{{ rows }}"></textarea>
+        <textarea class="form-control text-area" name="{{ name }}" cols="{{ cols }}" rows="{{ rows }}"></textarea>
     </div>
 {% endmacro %}

@@ -3,6 +3,14 @@ require 'vendor/autoload.php';
 
 use App\router\Router;
 
+if (session_start()) {
+    $_SESSION["language"] = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
+}
+var_dump($_SESSION);
+
+
+
+
 $page = 'home';
 if  (isset($_GET['p'])) {
     $page = $_GET['p'];
@@ -13,7 +21,7 @@ if (isset($_POST['p'])) {
 // foreach ($_SERVER as $label => $info) {
 //    echo "<p><b>" . $label . "</b> : " . var_dump($info) . "</p>"; 
 // }
-echo($_POST["login"] . "<br/>") ?? "Guest<br/>";
+echo($_SESSION["login"] . "<br/>") ?? "Guest<br/>";
 
 //// Routing :
     $router = new Router($_GET['url']);

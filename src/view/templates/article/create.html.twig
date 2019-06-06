@@ -17,8 +17,9 @@
     <div class="container">
         <h4>Create a new article : </h4>
         <form action="" method="POST">
+            {{ form.inputField("Language", "articleLanguage", "text") }}
             {{ form.inputField("Title", "articleTitle", "text") }}
-            {{ form.textArea("Article Content :", "articleContent", 40, 8) }}
+            {{ form.textArea("Article Content :", "articleContent", 40, 12) }}
             {{ form.submitBtn() }}
         </form>
     </div> 

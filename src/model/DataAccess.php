@@ -86,7 +86,8 @@ class DataAccess
     public function createUser(string $login, string $password)
     {
         try {
-            $request = $this->dataBase->prepare("INSERT INTO user (login, password) VALUES (:login, :password)");
+            $request = $this->dataBase->prepare("INSERT INTO user (login, password, email, first_name, last_name) 
+                        VALUES (:login, :password, :email, :first_name, :last_name)");
         } catch (PDOException $erreur) {
             echo "Request Failed";
             exit;
@@ -113,14 +114,19 @@ class DataAccess
     public function getArticle(int $id) : array
     {
         // Trying to prepare the request in order to avoid SQL injection
+        $lang = strtoupper($_SESSION["language"]);
         try {
-            $request = $this->dataBase->prepare("SELECT title, date, content FROM article WHERE id = :id");
+            $request = $this->dataBase->prepare(
+                'SELECT title, content from article_translations WHERE language_id
+                IN (SELECT id FROM languages WHERE languages.name = :lang)
+                AND article_translations.article_id = :id;'
+            );
         } catch (PDOException $erreur) {
             echo "Request Failed";
             exit;
         }
         // Binding value 
-        if (!$request->bindValue(":id", $id, \PDO::PARAM_INT)) {
+        if (!$request->bindValue(":id", $id, \PDO::PARAM_INT) || !$request->bindValue(":lang", $lang, \PDO::PARAM_STR)) {
             echo "Request Failed";
             exit;
         }
@@ -137,62 +143,46 @@ class DataAccess
             echo "Could not get article";
             exit;
         }
-        $article = ['title' => $response[0], 'date' => $response[1], 'content' => $response[2]];
+        $article = ['title' => $response[0], 'content' => $response[1]];
         var_dump($article);
         return($article);
         // $article =  ["title" => $response]
     }
 
-
-////    // Requete récupération article
-    // public function getArticle(string $articleTitle):array
+    // public function createArticle(string $title, string $content, string $language)
     // {
-    //     $request =  "SELECT * FROM article WHERE title=:title";
-    //     try
-    //     {
-    //         $preparedRequest = $this->dataBase->prepare($request);
+    //     try {
+    //         $request = $this->dataBase->prepare("INSERT INTO articles (")
     //     }
-    //     catch(PDOException $error)
-    //     {
-    //         echo "echec preparation de request de recuperation d'un article";
-    //         exit;
-    //     }
-    //     if ($preparedRequest->bindValue(":title", $articleTitle, PDO::PARAM_STR) === false){
-    //         // Request Failed
-    //         echo "Le bindValue de la recuperation d'un article a echouee";
-    //         exit;
-    //     }
-    //     if ($preparedRequest->execute() === false){
-    //         // Request Failed
-    //         echo "L'execute de la recuperation d'un article a echouee";
-    //         exit;
-    //     }
-    //     // echo $preparedRequest->getMessage();
-    //     $result = $preparedRequest->fetch();
-    //     if ($preparedRequest->closeCursor() === false) {
-    //         echo "Echec de la fermeture de la request de recuperation des articles";
-    //         exit;
-    //       }
-    //     if ($result === false){
-    //         return array();
-    //     }
-    //     // var_dump($result);
-    //     foreach($result as $ligne){
-    //          $ligne[1] . "<br>";
-    //         echo $ligne[2] . "<br>";
-    //     }
-    //     return $article;
-    // }
 
-    ////    // Récupération de tous les articles :
-    // public function getAllArticles()
-    // {
-    //     $result = $this->dataBase->query("SELECT * FROM article");
-    //     $tableau = $result->fetchAll();
-    //     $result->closeCursor();
-    //     return $tableau;
-    //     // $readArticle = $this->dataBase->query("SELECT * FROM article") ;
-    //     // $preparedQuery = $dataBase->prepare($query);
-    //     // $preparedQuery->execute();
+
+
+
+
+
+    //     try {
+    //         $request = $this->dataBase->prepare("INSERT INTO article_translations (login, password, email, first_name, last_name) 
+    //                     VALUES (:login, :password, :email, :first_name, :last_name)");
+    //     } catch (PDOException $erreur) {
+    //         echo "Request Failed";
+    //         exit;
+    //     }
+    //     if (!$request->bindValue(":login",$login, \PDO::PARAM_STR) ||
+    //         !$request->bindValue(":password",password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR)) {
+    //         echo "Request Failed";
+    //         exit();
+    //     }
+    //     if (!$request->execute()) {
+    //         // Si le login est déjà dans la base
+    //         if ($request->errorInfo()[0] === '23000') {
+    //             throw new AuthenticationException(AuthenticationException::LOGIN_ALREADY_USED);
+    //         } else {
+    //             echo "Request Failed";
+    //             exit;
+    //         }
+    //     }
+    //     if ($request->closeCursor() === false) {
+    //         echo "Error while closing the request";
+    //     }
     // }
-} 
+}
