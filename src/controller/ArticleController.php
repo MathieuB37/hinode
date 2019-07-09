@@ -1,29 +1,54 @@
 <?php
 
-namespace App\controller;
+namespace App\Controller;
 
-use \App\controller\DefaultController;
+use \App\Controller\DefaultController;
+use \App\Repository\ArticlesRepository;
+use \App\Repository\ArticleTranslationsRepository;
+use \App\Entity\Article;
+use \App\Entity\ArticleTranslation;
 
 
 class ArticleController extends DefaultController
 {
-    // private $newsTitle;
-    // private $newsContent;
     private $id;
+    private $articleRepository;
+    private $translationRepository;
+    private $article;
+    private $articleTranslation;
+    private $language;
 
-    // TODO: Link all of this to the DB in order to get the correct article
+    public function __construct()
+    {
+        parent::__construct();
+        $this->articleRepository = new ArticlesRepository;
+        $this->translationRepository = new ArticleTranslationsRepository;
+        $this->article = new Article;
+        $this->language = "FR";
+    }
+
     public function show(int $id)
     {
-        $this->article = $this->dataBase->getArticle($id);
-        // $blah = DefaultController::__construct();
-        echo $this->twig->render('article/article.html.twig', ['article' => $this->article]);
+        $this->article = $this->articleRepository->getArticleById($id);
+        $this->articleTranslation = $this->translationRepository->getArticleByLang($id, $this->language);
+        echo $this->twig->render('article/article.html.twig', 
+                                ['article' => $this->article,
+                                 'articleTranslation' => $this->articleTranslation]
+        );
     }
 
     public function create()
     {
         // Detect if a form has been filled
-        if (isset($_POST["articleTitle"]) && isset($_POST["articleContent"]) && isset($_POST["articleLanguage"])) {
-            $this->article = $this->dataBase->createArticle($_POST["articleTitle"], $_POST["articleContent"], $_POST["articleLanguage"]);
+        if (isset($_POST["articleTitle"]) && 
+            isset($_POST["articleContent"]) && 
+            isset($_POST["articleLanguage"])) 
+        {
+            $this->article = $this->ArticleRepository->createArticle(
+                $_POST["articleTitle"], 
+                $_POST["articleContent"], 
+                $_POST["articleLanguage"]
+            );
         } else {
             // Display the article creation form
             echo $this->twig->render('article/create.html.twig');

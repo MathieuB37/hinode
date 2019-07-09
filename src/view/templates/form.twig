@@ -2,11 +2,16 @@
 {% macro inputField(label, name, type = "text") %}
     <div class="form-group col-3">
         <label for="{{ name }}">{{ label }}</label>
-        <input class="form-control" type="{{ type }}" name="{{ name }}" placeholder="{{ label }}">
+        <input 
+            class="form-control" 
+            type="{{ type }}" 
+            name="{{ name }}" 
+            placeholder="{{ label }}"
+        >
     </div>
 {% endmacro %}
 
-{# generate submit button for form  #}
+{# Generate submit button for form  #}
 {% macro submitBtn() %}
     <div class="form-group col-2">
         <input class="form-control btnSubmit" type="submit">
@@ -17,6 +22,13 @@
 {% macro textArea(label, name, cols = "30", rows = "30") %}
     <div class="form-group col-2">
         <label for="{{ name }}">{{ label }}</label>
-        <textarea class="form-control text-area" name="{{ name }}" cols="{{ cols }}" rows="{{ rows }}"></textarea>
+        <textarea 
+            class="form-control text-area" 
+            name="{{ name }}" 
+            cols="{{ cols }}" 
+            rows="{{ rows }}">
+        </textarea>
     </div>
 {% endmacro %}
+
+

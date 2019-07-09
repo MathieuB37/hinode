@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\controller\exception;
+namespace App\Exception;
 
-use App\controller\Authentication;
+use App\Controller\Authentication;
 
 class AuthenticationException extends \Exception
 {
@@ -16,6 +16,7 @@ class AuthenticationException extends \Exception
     {
         switch ($code) {
             case self::LOGIN_LENGTH_NOT_VALID:
+            //TODO: Repair the min & max values of the login (conf file ?)
                 parent::__construct("Le login doit être compris entre " . Authentication::LOGIN_MIN_LENGTH . " et " . Authentication::LOGIN_MAX_LENGTH . " caractères.", $code);
                 break;
             case self::PASSWORD_LENGTH_NOT_VALID:

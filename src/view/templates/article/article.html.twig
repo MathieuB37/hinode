@@ -8,9 +8,9 @@
  <!-- Last News section -->
     <section id="lastNews" class="col-md-11">
         <article class="news">
-            <h3 class="news-title">{{ article['title'] }}</h3>
-            <h4 class="news-date">{{ article['date'] }}</h4>
-            <p class="news-content">{{ article['content'] }}</p>
+            <h3 class="news-title">{{ articleTranslation.getTitle }}</h3>
+            <h4 class="news-date">{{ article.getCreatedAt.format('d-m-Y') }}</h4>
+            <p class="news-content">{{ articleTranslation.getContent }}</p>
         </article>
     </section>
 {% endblock %}
