@@ -5,24 +5,15 @@ use App\Exception\AuthenticationException;
 
 class EntityManager 
 {   
-    // Constants
-    // Database access
-    const DRIVER = "mysql";
-    const HOST = "localhost";
-    const PORT = "3306";
-    const BASE = "site_hinode";
-    const LOGIN = "hinode";
-    const PASSWORD = "kJMg7uBfg6ZZ2QPx";
     // Class attributes
     private static $instance = null;
     // Attributes
-    private $config;
     private $PDO;
-
+    private $config;
     // Class methods :
     private function __construct()
     {   // Tries to establish a connection with the database 
-        $this->config = require "src/Config/Database.conf.php";
+        $this->config = $_SESSION["siteConfig"]["dataBase"];
         try {
             $this->PDO = new \PDO($this->config["driver"]
                                         . ':host=' . $this->config["host"]

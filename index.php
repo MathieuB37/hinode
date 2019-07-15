@@ -1,15 +1,13 @@
 <?php
-require 'vendor/autoload.php';
+
+include $_SERVER["DOCUMENT_ROOT"] . "/src/Include/commonInclude.php";
 
 use App\Router\Router;
 
-// session_start();
-// isset($_SESSION["language"]) ?? $_SESSION["language"] = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
-// if (session_start()) {
-//     $_SESSION["language"] = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"], 0, 2);
+// if (isset($_SESSION['user_login']) && !empty($_SESSION['user_login'])) {
+//     var_dump($_SESSION["user_login"]);
+//     var_dump($_SESSION["user_id"]);
 // }
-// var_dump($_SESSION);
-// echo($_SESSION["login"] . "<br/>") ?? "Guest<br/>";
 
 $page = 'home';
 if  (isset($_GET['p'])) {
@@ -34,6 +32,8 @@ if (isset($_POST['p'])) {
             $router->get('/article/:id', 'Article#show');
         // Authentication
             $router->get('/connection', 'Authentication#checkLogin');
+        // Disconnect
+            $router->get('/logout', 'Authentication#logout');
 
     // POST Method Routes :
         $router->post('/connection', 'Authentication#checkLogin');

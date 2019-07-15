@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Controller\DefaultController;
 use App\Exception\AuthenticationException as AuthException;
+use App\Service\UserAuthenticator;
 
 class AuthenticationController extends DefaultController
 {
@@ -17,40 +18,30 @@ class AuthenticationController extends DefaultController
     private $errorList = [];
 
     // Methods
-    public function checkLogin() : void
+    public function checkLogin(): void
     {
         // Cheking if there is a form to process
         if (isset($_POST["login"]) && isset($_POST["password"])) {
-            try {
-                // Checking if the couple login & password matches
-                if ($this->dataBase->getInstance()->checkLogin($_POST["login"], $_POST["password"])) {
-                    // Granting access
-                    //TODO: Prendre ID 
-                    $_SESSION["login"] = $_POST["login"];
-                    header("Location: article/2");
-                    exit;
-                } else {
-                    // Login and password didn't match
-                    throw new AuthException(AuthException::INFORMATIONS_NOT_VALID);
-                }
+            $authService = new UserAuthenticator;
+            $loginResponse = $authService->checkLogin($_POST["login"], $_POST["password"]);
+            
+            // If success, redirect to home page
+            if (isset($loginResponse["error"]) && !$loginResponse["error"]) {
+                header("Location: home");
             }
-            // Catching the error and adding it to the error list
-            catch (AuthException $error) {
-                array_push($this->errorList, "Erreur: " . $error->getMessage());
-                // Stays on the same route and regenerate the page with a display of the error(s)
-                echo $this->twig->render(
-                    "authentication/connection.html.twig", 
-                    ["errorList" => $this->errorList]
-                );
-            }
-        } else {
-            // No informations given (or first time on the page), we display the empty form
-            unset($this->login);
-            echo $this->twig->render("authentication/connection.html.twig");
         }
+        echo $this->twig->render(
+            "authentication/connection.html.twig",
+            $loginResponse
+        );
     }
 
-    public function checkRegister() : void
+    public function logout(): void
+    {
+        UserAuthenticator::logout();
+    }
+
+    public function checkRegister(): void
     {
         // Cheking if there is a form to process
         if (isset($_POST["login"]) && isset($_POST["password"])) {
