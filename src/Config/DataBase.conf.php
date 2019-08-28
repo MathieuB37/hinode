@@ -7,7 +7,5 @@ return [
     "name" => "site_hinode",
     "charset" => "utf8",
     "login" => "hinode",
-    "password" => "kJMg7uBfg6ZZ2QPx",
+    "password" => "E9JLp235H2sNzxhN",
 ];
-
-

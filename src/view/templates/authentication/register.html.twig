@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% import 'form.twig' as form%}
+
+{% block head %}
+    <title>Connection</title>
+{% endblock %}
+
+{% block mainContent %}
+    {% if error is defined %}
+    <div class="error">
+        <p class="error-red"> {{ error.errorMessage }} </p>
+    </div>
+    {% endif %}
+    <div class="container">
+        <h4>S'enregistrer'</h4>
+        <form action="" method="POST">
+            {{ form.inputField("Login", "login", "text") }}
+            {{ form.inputField("Mot de passe", "password", "password") }}
+            {{ form.inputField("Adresse mail", "email", "email") }}
+            {{ form.inputField("Confirmer adresse mail", "email_confirm", "email") }}
+            {{ form.inputField("Nom", "last_name", "text") }}
+            {{ form.inputField("Prénom", "first_name", "text") }}
+            {{ form.submitBtn() }}
+        </form>
+    </div> 
+{% endblock %}

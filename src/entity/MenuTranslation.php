@@ -11,8 +11,8 @@ class MenuTranslation
 
     /**
      * Get the value of id
-     */ 
-    public function getId() : int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
@@ -21,7 +21,7 @@ class MenuTranslation
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId(int $id)
     {
         $this->id = $id;
@@ -31,8 +31,8 @@ class MenuTranslation
 
     /**
      * Get the value of menuId
-     */ 
-    public function getMenuId() : int
+     */
+    public function getMenuId(): int
     {
         return $this->menuId;
     }
@@ -41,7 +41,7 @@ class MenuTranslation
      * Set the value of menuId
      *
      * @return  self
-     */ 
+     */
     public function setMenuId(int $menuId)
     {
         $this->menuId = $menuId;
@@ -51,8 +51,8 @@ class MenuTranslation
 
     /**
      * Get the value of langugaeId
-     */ 
-    public function getLangugaeId() : int
+     */
+    public function getLangugaeId(): int
     {
         return $this->langugaeId;
     }
@@ -61,7 +61,7 @@ class MenuTranslation
      * Set the value of langugaeId
      *
      * @return  self
-     */ 
+     */
     public function setLangugaeId(int $langugaeId)
     {
         $this->langugaeId = $langugaeId;
@@ -71,8 +71,8 @@ class MenuTranslation
 
     /**
      * Get the value of translation
-     */ 
-    public function getTranslation() : string
+     */
+    public function getTranslation(): string
     {
         return $this->translation;
     }
@@ -81,7 +81,7 @@ class MenuTranslation
      * Set the value of translation
      *
      * @return  self
-     */ 
+     */
     public function setTranslation(string $translation)
     {
         $this->translation = $translation;

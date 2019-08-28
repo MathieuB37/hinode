@@ -24,15 +24,15 @@ class Article
         ];
     }
 
-    public function getColumns() : array
+    public function getColumns(): array
     {
         return $this->columns;
     }
 
     /**
      * Get the value of id
-     */ 
-    public function getId() : int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
@@ -41,7 +41,7 @@ class Article
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId(int $id): Article
     {
         $this->id = $id;
@@ -50,8 +50,8 @@ class Article
 
     /**
      * Get the value of createdBy
-     */ 
-    public function getCreatedBy() : int
+     */
+    public function getCreatedBy(): int
     {
         return $this->createdBy;
     }
@@ -60,8 +60,8 @@ class Article
      * Set the value of createdBy
      *
      * @return  self
-     */ 
-    public function setCreatedBy(int $createdBy) : Article
+     */
+    public function setCreatedBy(int $createdBy): Article
     {
         $this->createdBy = $createdBy;
         return $this;
@@ -69,8 +69,8 @@ class Article
 
     /**
      * Get the value of createdAt
-     */ 
-    public function getCreatedAt() : \DateTime
+     */
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
@@ -79,10 +79,10 @@ class Article
      * Set the value of createdAt
      *
      * @return  self
-     */ 
-    public function setCreatedAt(\DateTime $createdAt = null) : Article
+     */
+    public function setCreatedAt(\DateTime $createdAt = null): Article
     {
-        if (empty($createdAt)){
+        if (empty($createdAt)) {
             $this->createdAt = new \DateTime();
         } else {
             $this->createdAt = $createdAt;
@@ -92,8 +92,8 @@ class Article
 
     /**
      * Get the value of modifiedBy
-     */ 
-    public function getModifiedBy() : ?int
+     */
+    public function getModifiedBy(): ?int
     {
         return $this->modifiedBy;
     }
@@ -102,8 +102,8 @@ class Article
      * Set the value of modifiedBy
      *
      * @return  self
-     */ 
-    public function setModifiedBy(?int $modifiedBy) : Article
+     */
+    public function setModifiedBy(?int $modifiedBy): Article
     {
         $this->modifiedBy = $modifiedBy;
         return $this;
@@ -111,8 +111,8 @@ class Article
 
     /**
      * Get the value of modifiedAt
-     */ 
-    public function getModifiedAt() : ?\DateTime
+     */
+    public function getModifiedAt(): ?\DateTime
     {
         return $this->modifiedAt;
     }
@@ -121,8 +121,8 @@ class Article
      * Set the value of modifiedAt
      *
      * @return  self
-     */ 
-    public function setModifiedAt(?\DateTime $modifiedAt) : Article
+     */
+    public function setModifiedAt(?\DateTime $modifiedAt): Article
     {
         $this->modifiedAt = $modifiedAt;
 

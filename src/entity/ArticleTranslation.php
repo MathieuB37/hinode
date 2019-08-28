@@ -4,111 +4,110 @@ namespace App\Entity;
 
 class ArticleTranslation
 {
-    
+
     private $id;
     private $articleId;
     private $languageId;
     private $title;
     private $content;
-    
-    
+
     /**
      * Get the value of id
-     */ 
-    public function getId() : int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
-    
+
     /**
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId(int $id) : ArticleTranslation
+     */
+    public function setId(int $id): ArticleTranslation
     {
         $this->id = $id;
-        
+
         return $this;
     }
-    
+
     /**
      * Get the value of articleId
-     */ 
-    public function getArticleId() : int
+     */
+    public function getArticleId(): int
     {
-    return $this->articleId;
+        return $this->articleId;
     }
-    
+
     /**
      * Set the value of articleId
      *
      * @return  self
-     */ 
-    public function setArticleId($articleId) : ArticleTranslation
+     */
+    public function setArticleId($articleId): ArticleTranslation
     {
-    $this->articleId = $articleId;
-    
-    return $this;
+        $this->articleId = $articleId;
+
+        return $this;
     }
-    
+
     /**
      * Get the value of languageId
-     */ 
-    public function getLanguageId() : int
+     */
+    public function getLanguageId(): int
     {
-    return $this->languageId;
+        return $this->languageId;
     }
 
     /**
      * Set the value of languageId
      *
      * @return  self
-     */ 
-    public function setLanguageId(int $languageId) : ArticleTranslation
+     */
+    public function setLanguageId(int $languageId): ArticleTranslation
     {
-    $this->languageId = $languageId;
+        $this->languageId = $languageId;
 
-    return $this;
+        return $this;
     }
 
     /**
      * Get the value of title
-     */ 
-    public function getTitle() : string
+     */
+    public function getTitle(): string
     {
-    return $this->title;
+        return $this->title;
     }
 
     /**
      * Set the value of title
      *
      * @return  self
-     */ 
-    public function setTitle(string $title) : ArticleTranslation
+     */
+    public function setTitle(string $title): ArticleTranslation
     {
-    $this->title = $title;
+        $this->title = $title;
 
-    return $this;
+        return $this;
     }
 
     /**
      * Get the value of content
-     */ 
-    public function getContent() : string
+     */
+    public function getContent(): string
     {
-    return $this->content;
+        return $this->content;
     }
 
     /**
      * Set the value of content
      *
      * @return  self
-     */ 
-    public function setContent(string $content) : ArticleTranslation
+     */
+    public function setContent(string $content): ArticleTranslation
     {
-    $this->content = $content;
+        $this->content = $content;
 
-    return $this;
+        return $this;
     }
 }

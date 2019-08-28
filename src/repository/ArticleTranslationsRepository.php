@@ -2,12 +2,12 @@
 
 namespace App\Repository;
 
-use App\Repository\DefaultRepository;
 use App\Entity\ArticleTranslation;
+use App\Repository\DefaultRepository;
 
 class ArticleTranslationsRepository extends DefaultRepository
 {
-    public function getArticleByLang(int $id, string $lang) : ArticleTranslation
+    public function getArticleByLang(int $id, string $lang): ArticleTranslation
     {
         // Preparing the request in order to avoid SQL injection
         try {
@@ -16,8 +16,8 @@ class ArticleTranslationsRepository extends DefaultRepository
                 IN (SELECT id FROM languages WHERE languages.name = :lang)
                 AND article_translations.article_id = :id;'
             );
-            // Binding value 
-            if (!$request->bindValue(":id", $id, \PDO::PARAM_INT) || 
+            // Binding value
+            if (!$request->bindValue(":id", $id, \PDO::PARAM_INT) ||
                 !$request->bindValue(":lang", $lang, \PDO::PARAM_STR)) {
                 throw new PDOException("Request Failed");
             }
@@ -35,15 +35,14 @@ class ArticleTranslationsRepository extends DefaultRepository
             echo "Request Failed : " . $error;
             exit;
         }
-            $article = new ArticleTranslation;
-            $article->setId($response["id"]);
-            $article->setArticleId($response["article_id"]);
-            $article->setLanguageId($response["language_id"]);
-            $article->setTitle($response["title"]);
-            $article->setContent($response["content"]);
-            return($article);
-            // $article =  ["title" => $response]
+        $article = new ArticleTranslation;
+        $article->setId($response["id"]);
+        $article->setArticleId($response["article_id"]);
+        $article->setLanguageId($response["language_id"]);
+        $article->setTitle($response["title"]);
+        $article->setContent($response["content"]);
+        return ($article);
+        // $article =  ["title" => $response]
     }
 
-    
 }

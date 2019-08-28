@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
+use \Twig\Loader\FilesystemLoader;
 
 abstract class DefaultController
 {
@@ -13,7 +13,7 @@ abstract class DefaultController
     {
         $loader = new FilesystemLoader('src/View/Templates');
         $this->twig = new Environment($loader, [
-        'cache' => false, '/tmp',
+            'cache' => false, '/tmp',
         ]);
     }
 }

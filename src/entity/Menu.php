@@ -9,8 +9,8 @@ class Menu
 
     /**
      * Get the value of id
-     */ 
-    public function getId() : int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
@@ -19,7 +19,7 @@ class Menu
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId(int $id)
     {
         $this->id = $id;
@@ -29,8 +29,8 @@ class Menu
 
     /**
      * Get the value of name
-     */ 
-    public function getName() : string
+     */
+    public function getName(): string
     {
         return $this->name;
     }
@@ -39,7 +39,7 @@ class Menu
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName(string $name)
     {
         $this->name = $name;

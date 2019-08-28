@@ -4,7 +4,6 @@ namespace App\controller;
 
 use \App\Controller\DefaultController;
 
-
 class HomeController extends DefaultController
 {
     private $newsTitle;
@@ -16,5 +15,4 @@ class HomeController extends DefaultController
     {
         echo $this->twig->render('home.html.twig');
     }
-}  
-  
+}

@@ -1,1 +1,5 @@
+XSym
+0048
+9dadb588e3891a182735fa405c7b9a8e
 ../gettext/languages/bin/export-plural-rules.php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

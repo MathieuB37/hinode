@@ -7,11 +7,9 @@
 {% endblock %}
 
 {% block mainContent %}
-    {% if errorList is defined %}
+    {% if error is defined %}
     <div class="error">
-        {% for error in errorList %}
-            <p class="error-red"> {{ error }} </p>
-        {% endfor %}
+        <p class="error-red"> {{ error.errorMessage }} </p>
     </div>
     {% endif %}
     <div class="container">
@@ -21,5 +19,6 @@
             {{ form.inputField("Mot de passe", "password", "password") }}
             {{ form.submitBtn() }}
         </form>
+        <a class="link" href="/register">Inscription</a>
     </div> 
 {% endblock %}

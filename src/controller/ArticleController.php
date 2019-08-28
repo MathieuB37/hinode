@@ -3,11 +3,10 @@
 namespace App\Controller;
 
 use \App\Controller\DefaultController;
-use \App\Repository\ArticlesRepository;
-use \App\Repository\ArticleTranslationsRepository;
 use \App\Entity\Article;
 use \App\Entity\ArticleTranslation;
-
+use \App\Repository\ArticlesRepository;
+use \App\Repository\ArticleTranslationsRepository;
 
 class ArticleController extends DefaultController
 {
@@ -30,23 +29,24 @@ class ArticleController extends DefaultController
     public function show(int $id)
     {
         $this->article = $this->articleRepository->getArticleById($id);
-        $this->articleTranslation = $this->translationRepository->getArticleByLang($id, $this->language);
-        echo $this->twig->render('article/article.html.twig', 
-                                ['article' => $this->article,
-                                 'articleTranslation' => $this->articleTranslation]
+        $this->articleTranslation = $this
+            ->translationRepository
+            ->getArticleByLang($id, $this->language);
+        echo $this->twig->render('article/article.html.twig',
+            ['article' => $this->article,
+                'articleTranslation' => $this->articleTranslation]
         );
     }
 
     public function create()
     {
         // Detect if a form has been filled
-        if (isset($_POST["articleTitle"]) && 
-            isset($_POST["articleContent"]) && 
-            isset($_POST["articleLanguage"])) 
-        {
+        if (isset($_POST["articleTitle"]) &&
+            isset($_POST["articleContent"]) &&
+            isset($_POST["articleLanguage"])) {
             $this->article = $this->ArticleRepository->createArticle(
-                $_POST["articleTitle"], 
-                $_POST["articleContent"], 
+                $_POST["articleTitle"],
+                $_POST["articleContent"],
                 $_POST["articleLanguage"]
             );
         } else {
@@ -54,5 +54,4 @@ class ArticleController extends DefaultController
             echo $this->twig->render('article/create.html.twig');
         }
     }
-}  
-  
+}

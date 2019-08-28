@@ -2,20 +2,20 @@
 
 namespace App\Repository;
 
-use App\Repository\DefaultRepository;
 use App\Entity\Article;
+use App\Repository\DefaultRepository;
 
 class ArticlesRepository extends DefaultRepository
 {
 
-    public function getArticleById(int $id) : Article
+    public function getArticleById(int $id): Article
     {
         // Preparing the request in order to avoid SQL injection
         try {
             $request = $this->dataBase->getPDO()->prepare(
                 'SELECT * from articles WHERE id = :id;'
             );
-            // Binding value 
+            // Binding value
             if (!$request->bindValue(":id", $id, \PDO::PARAM_INT)) {
                 throw new PDOException("Request Failed");
             }
@@ -39,8 +39,7 @@ class ArticlesRepository extends DefaultRepository
         $article->setCreatedAt(new \DateTime($response[$article->getColumns()["createdAt"]]));
         $article->setModifiedBy(null);
         $article->setModifiedAt(null);
-        return($article);
+        return ($article);
     }
 
-    
 }
